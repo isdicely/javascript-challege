@@ -18,8 +18,7 @@ var latest_sighting= new Date(Math.max(...ufo_data.map(sighting=>sighting.dateti
 
 // Add instructions for calendar input
 var instructions= d3.select(".instructions");
-instructions.text(`Please select a date (MM/DD/YYYY) between
- ${earliest_sighting.toLocaleDateString()} and ${latest_sighting.toLocaleDateString()}.`)
+instructions.text(`Select a date between: ${earliest_sighting.toLocaleDateString()} - ${latest_sighting.toLocaleDateString()}.`)
 
 
 
@@ -28,6 +27,8 @@ instructions.text(`Please select a date (MM/DD/YYYY) between
 var tbody= d3.select("tbody");
     // Function to make table
 function make_table(data){
+    // Clear any input
+    tbody.html("");
     data.forEach(function(sighting) {
         var row = tbody.append("tr");
         Object.values(sighting).forEach((value)=>{
@@ -42,23 +43,29 @@ function make_table(data){
 
 
 // Select the form input
-var input= d3.select("#input")
+var date_input= d3.select("#date_input")
+date_input.attr("min",earliest_sighting.toISOString().slice(0,10))
+date_input.attr("max",latest_sighting.toISOString().slice(0,10))
+date_input.attr("value", earliest_sighting.toISOString().slice(0,10))
 
 // Create event handler
-input.on("submit", runEnter);
+date_input.on("change", runEnter);
 
 // Create funtion to run for event
-function runEnter(){
+function runEnter(event, d){
     // Prevent the page from refreshing
+    console.group("runEnter data");
+    console.log({this: this, event: event, d: d});
+    console.groupEnd();
     d3.event.preventDefault();
-    // Select the input elment and get the raw HTML node
-    var date_input= d3.select("#date_input")
-    // Get the value property of the input element
-    date_input.on("change", function(event){
-    var selected_date= event.target.valueAsDate;
-    display_data= ufo_data.filter(entry=> entry.datetime=== selected_date)
-    .map(entry=>({...entry,datetime:entry.datetime.toLocaleDateString()}));
-    });
+    
+    var selected_date=new Date(`${this.value}T12:00:00`).toLocaleDateString()
+    // var selected_date=this.valueAsDate.toLocaleDateString()
+    // var selected_date= event.target.valueAsDate;
+    const filtered_display_data = display_data.filter(entry=> entry.datetime === selected_date)
+    // .map(entry=>({...entry,datetime:entry.datetime.toLocaleDateString()}));
+    console.log({selected_date, filtered_display_data});
+ 
     // Display table
-    make_table(display_data);   
-} ;   
+    make_table(filtered_display_data);   
+} ;
