@@ -1,8 +1,27 @@
-// Variable that can not be reassgined. Remains constant
-const ufo_data= data
+// Convert datetime values from string to date
+function make_date(str){
+    var str_split= str.split("/");
+    var year= parseInt(str_split[2]);
+    var day= parseInt(str_split[1]);
+    var month= parseInt(str_split[0]);
+    return new Date(year, month, day);
+};
+
+// Replace datetime string with a date
+// const defines a variable that can not be reassgined. Remains constant
+const ufo_data= data.map(entry=>({...entry,datetime:make_date(entry.datetime)}));
+const display_data= ufo_data.map(entry=>({...entry,datetime:entry.datetime.toLocaleDateString()}));
+// Find earliest date and latest date in the data
+var earliest_sighting= new Date(Math.min(...ufo_data.map(sighting=>sighting.datetime)));
+var latest_sighting= new Date(Math.max(...ufo_data.map(sighting=>sighting.datetime)));
+
+// Add instructions for calendar input
+var instructions= d3.select(".instructions");
+instructions.text(`Please select a date (MM/DD/YYYY) between
+ ${earliest_sighting.toLocaleDateString()} and ${latest_sighting.toLocaleDateString()}.`)
+
 // Select area in html where table will be built
 var tbody= d3.select("tbody");
-
 function make_table(data){
     data.forEach(function(sighting) {
         var row = tbody.append("tr");
@@ -13,13 +32,5 @@ function make_table(data){
     })
 };
 
-make_table(ufo_data);
+make_table(display_data);
 
-var earliest_sighting= ufo_data.forEach(function(sighting){
-    Object.values(sighting).forEach((value)=>{
-        Math.min(sighting.datetime)
-    })
-})
-var latest_sighting
-
-console.log(earliest_sighting);

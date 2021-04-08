@@ -12,5 +12,9 @@ table, th, td {
     border: 1px solid burlywood;
     text-align: center;
     border-spacing: 10px;
-
-  }
+}
+.style{
+    color:rgb(68, 63, 63);
+    font-style: oblique;
+    text-shadow:rgb(32, 11, 219);
+}
