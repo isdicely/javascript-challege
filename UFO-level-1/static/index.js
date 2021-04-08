@@ -14,3 +14,12 @@ function make_table(data){
 };
 
 make_table(ufo_data);
+
+var earliest_sighting= ufo_data.forEach(function(sighting){
+    Object.values(sighting).forEach((value)=>{
+        Math.min(sighting.datetime)
+    })
+})
+var latest_sighting
+
+console.log(earliest_sighting);
