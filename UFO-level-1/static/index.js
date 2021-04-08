@@ -11,7 +11,7 @@ function make_date(str){
     // const defines a variable that can not be reassgined. Remains constant
 const ufo_data= data.map(entry=>({...entry,datetime:make_date(entry.datetime)}));
 // Make a display format of the data where the datetime displays better for the html site
-const display_data= ufo_data.map(entry=>({...entry,datetime:entry.datetime.toLocaleDateString()}));
+var display_data= ufo_data.map(entry=>({...entry,datetime:entry.datetime.toLocaleDateString()}));
 // Find earliest date and latest date in the data
 var earliest_sighting= new Date(Math.min(...ufo_data.map(sighting=>sighting.datetime)));
 var latest_sighting= new Date(Math.max(...ufo_data.map(sighting=>sighting.datetime)));
@@ -34,6 +34,13 @@ function make_table(data){
         })
     })
 };
+
+var date_input= d3.select("#date_input")
+date_input.on("change", function(event){
+    var selected_date= event.target.valueAsDate;
+    display_data= ufo_data.filter(entry=> entry.datetime=== selected_date)
+    .map(entry=>({...entry,datetime:entry.datetime.toLocaleDateString()}));
+});
+
 // Display table
 make_table(display_data);
-
