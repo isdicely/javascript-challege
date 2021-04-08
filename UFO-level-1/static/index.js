@@ -21,6 +21,8 @@ var instructions= d3.select(".instructions");
 instructions.text(`Please select a date (MM/DD/YYYY) between
  ${earliest_sighting.toLocaleDateString()} and ${latest_sighting.toLocaleDateString()}.`)
 
+
+
 // Insert table into html
     // Select area in html where table will be built
 var tbody= d3.select("tbody");
@@ -35,12 +37,28 @@ function make_table(data){
     })
 };
 
-var date_input= d3.select("#date_input")
-date_input.on("change", function(event){
+
+
+
+
+// Select the form input
+var input= d3.select("#input")
+
+// Create event handler
+input.on("submit", runEnter);
+
+// Create funtion to run for event
+function runEnter(){
+    // Prevent the page from refreshing
+    d3.event.preventDefault();
+    // Select the input elment and get the raw HTML node
+    var date_input= d3.select("#date_input")
+    // Get the value property of the input element
+    date_input.on("change", function(event){
     var selected_date= event.target.valueAsDate;
     display_data= ufo_data.filter(entry=> entry.datetime=== selected_date)
     .map(entry=>({...entry,datetime:entry.datetime.toLocaleDateString()}));
-});
-
-// Display table
-make_table(display_data);
+    });
+    // Display table
+    make_table(display_data);   
+} ;   
