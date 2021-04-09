@@ -10,44 +10,67 @@
 
 </head>
 <body>
+    <!-- Page title -->
     <h1 class= 'head_title'><center><strong>UFO Sightings</strong></center></h1>
+    <br>
+    <!-- Bootstrap continers -->
     <div class="bootstrap-iso">
         <div class="container-fluid">
+            <!-- Row for welcome statement -->
             <div class="row">
                 <div class="col-md-12 col-sm-6 col-xs-12">
                     <h2 class= 'head_title'></strong>Welcome to the UFO Sightings database.</strong></h2>
+                    <br>
+                </div>
+            </div>
+            <!-- row for Information statement -->
+            <div class="col-md-9 col-sm-6 col-xs-12">
+                <div clas="row">
+                    <p class= 'head_title'>
+                            An unidentified flying object (UFO) is any aerial phenomenon that cannot immediately be identified or explained.
+                            Most UFOs are identified or investigated as conventional objects or phenomena. The term is widely used for 
+                            claimed observations of extraterrestrial spacecraft. -Wikipedia
+                    </p>
+                </div>
+            </div>
+            <!-- Row for Table and Counter -->
+            <div class="row">
+                <div class="col-md-9 col-sm-6 col-xs-12">
+                    <table style= "width:100%" class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Date/Time</th>
+                                <th>City</th>
+                                <th>State</th>
+                                <th>Country</th>
+                                <th>UFO Shape</th>
+                                <th>Duration(min)</th>
+                                <th>Comments</th>
+                            </tr>
+                            </thead>
+                        <tbody></tbody>
+                    </table>
+                </div> 
+                    <!-- Row for input calendar and resource list -->
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class= "form">
+                        <p class= "instructions style"></p>
+                        <input type="date" id="date_input">
+                    </div>
+                    <div class= "head_title">
+                    <br><br>       
+                        Resources:
+                        <ul>
+                            <li>
+                                <a href="https://en.wikipedia.org/wiki/Unidentified_flying_object" target="_blank">UFO - wikipedia</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </div>    
-    <div class="bootstrap-iso">
-        <div class="container-fluid">
-         <div class="row">
-          <div class="col-md-9 col-sm-6 col-xs-12">
-                <table style= "width:100%" class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Date/Time</th>
-                            <th>City</th>
-                            <th>State</th>
-                            <th>Country</th>
-                            <th>UFO Shape</th>
-                            <th>Duration(min)</th>
-                            <th>Comments</th>
-                        </tr>
-                        </thead>
-                    <tbody></tbody>
-                </table>
-            </div> 
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                <div class= "form">
-                    <p class= "instructions style"></p>
-                    <input type="date" id="date_input">
-                </div>
-            </div>
-
-    <p></p>
-    
+        <!--Dependencies  -->
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src= "static/js_data.js"></script>
     <script src= "static/index.js" ></script>
