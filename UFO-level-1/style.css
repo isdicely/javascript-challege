@@ -4,9 +4,10 @@ body {
     background-attachment: fixed;
 }
 .head_title{
-    color:cornflowerblue;
+    color:rgb(18, 91, 228);
     font-style: oblique;
-    text-shadow: rgb(32, 11, 219);
+    font-family: cursive ;
+    text-shadow: rgb(8, 1, 68);
 }
 table, th, td {
     border: 1px solid burlywood;
@@ -14,7 +15,7 @@ table, th, td {
     border-spacing: 10px;
 }
 .style{
-    color:rgb(68, 63, 63);
+    color:rgb(18, 91, 228);
     font-style: oblique;
-    text-shadow:rgb(32, 11, 219);
+    /* text-shadow:rgb(149, 148, 160); */
 }
