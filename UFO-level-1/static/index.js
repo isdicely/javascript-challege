@@ -58,18 +58,12 @@ date_input.on("change", runEnter);
 // Create funtion to run for event
 function runEnter(event, d){
     // Prevent the page from refreshing
-    console.group("runEnter data");
-    console.log({this: this, event: event, d: d});
-    console.groupEnd();
     d3.event.preventDefault();
-    
+    // Convert date input into dat/time format and added time to help display correct date on filter.
     var selected_date=new Date(`${this.value}T12:00:00`).toLocaleDateString()
-    // var selected_date=this.valueAsDate.toLocaleDateString()
-    // var selected_date= event.target.valueAsDate;
+    // Filter data based on selected date
     const filtered_display_data = display_data.filter(entry=> entry.datetime === selected_date)
-    // .map(entry=>({...entry,datetime:entry.datetime.toLocaleDateString()}));
-    console.log({selected_date, filtered_display_data});
- 
+    
     // Display table
     make_table(filtered_display_data);   
 } ;
