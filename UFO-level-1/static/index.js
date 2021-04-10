@@ -1,9 +1,14 @@
 // Convert datetime values from string to date
 function make_date(str){
+    // Split the string, splitting by "/""
     var str_split= str.split("/");
+    // Set year to the 3rd element on the array
     var year= parseInt(str_split[2]);
+    // Set day to the 2nd element of the array
     var day= parseInt(str_split[1]);
+    // Set month to the 1st element of the array
     var month= parseInt(str_split[0]);
+    // Return the date
     return new Date(year, month, day);
 };
 
