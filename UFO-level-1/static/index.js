@@ -44,6 +44,7 @@ function make_table(data){
     })
 };
 
+make_table(display_data);
 
 // Select the form input (date format)
 var date_input= d3.select("#date_input")
